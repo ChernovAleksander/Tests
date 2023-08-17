@@ -1,0 +1,5 @@
+<aspectj>
+    <aspects>
+        <aspect name="/Users/sashachernov/AndroidStudioProjects/Tests/autotest/src/main/java/com/webbankir/teststree/.AllureStepAspect"/> <!-- Замените на полное имя вашего аспекта -->
+    </aspects>
+</aspectj>
