@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.touch.WaitOptions
 import io.appium.java_client.touch.offset.PointOption
 import io.qameta.allure.Step
+import io.qameta.allure.Story
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.openqa.selenium.By
@@ -13,9 +14,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 import java.time.Duration
 
+@Story("CalculatorScreen")
+@DisplayName("Первый калькулятор")
 class CalculatorScreen(private val driver: AndroidDriver, private val wait: WebDriverWait) {
 
-    @DisplayName("Первый калькулятор")
     @Test
     fun start() {
         EditCalckSum()

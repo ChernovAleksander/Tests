@@ -1,5 +1,10 @@
 import com.webbankir.teststree.greetings.phone_number_screen.PhoneNumberScreen
+import com.webbankir.teststree.sign_up.calculator_screen.BirthdayGenerator
 import com.webbankir.teststree.sign_up.calculator_screen.CalculatorScreen
+import com.webbankir.teststree.sign_up.persolan_data.PersonalData
+import com.webbankir.teststree.sign_up.pesonal_screen.FakeEmailGenerator
+import com.webbankir.teststree.sign_up.pesonal_screen.FakeFioGenerator
+import com.webbankir.teststree.sign_up.pesonal_screen.FioScreen
 import io.appium.java_client.android.AndroidDriver
 import io.qameta.allure.Allure
 import io.qameta.allure.Epic
@@ -35,7 +40,6 @@ class AllureStepAspect {
 }
 
 
-@Story("grandma dick")
 class TestManager {
     //for ios
 //    private fun createCapabilities(): DesiredCapabilities {
@@ -61,22 +65,23 @@ class TestManager {
         return caps
     }
 
-    @Test
+
+    @Step("Запуск теста регистрации")
     @Story("Регистрация")
-    @Feature("Регистрация")
-    @DisplayName("Проверка связи")
+    @Test
     fun signUp() {
        // val driver = IOSDriver(URL("http://0.0.0.0:4723/"), createCapabilities())
         //for android
         val driver = AndroidDriver(URL("http://0.0.0.0:4723/"), createCapabilities())
         val wait = WebDriverWait(driver, Duration.ofSeconds(20)) // Ожидание до 20 секунд
+        val fakeFioGenerator = FakeFioGenerator()
+        val fakeEmailGenerator = FakeEmailGenerator()
 
         try {
-            teststep()
             PhoneNumberScreen(driver, wait).start()
             CalculatorScreen(driver, wait).start()
-            //inputFIO()
-            println("Тесты успешно завершены!")
+            FioScreen(driver, wait, fakeFioGenerator, fakeEmailGenerator).start()
+            PersonalData(driver, wait, BirthdayGenerator()).start()
         } catch (e: Throwable) {
             println("Произошла ошибка: ${e.message}")
             takeScreenshot(driver)
@@ -88,16 +93,8 @@ class TestManager {
         }
     }
 
-//    @Step("Заполняем поле ФИО")
-//    private fun inputFIO(wait: WebDriverWait) {
-//        println("Заполняем поле ФИО")
-//        val FIOfield = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id())
-//    }
 private fun takeScreenshot(driver: AndroidDriver) {
     val screenshot = driver.getScreenshotAs(OutputType.BYTES)
     Allure.getLifecycle().addAttachment("Screenshot", "image/png", "png", screenshot)
 }
 }
-@Test
-@Step("ALLO BLIA")
-private fun teststep(){}

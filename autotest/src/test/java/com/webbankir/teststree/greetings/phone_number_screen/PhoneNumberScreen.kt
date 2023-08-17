@@ -11,10 +11,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 
 @Story("PhoneNumberScreen")
+@DisplayName("Экран ввода номера телефона")
 class PhoneNumberScreen(private val driver: AndroidDriver, private val wait: WebDriverWait) {
 
-//    @DisplayName("Экран ввода номера телефона")
-//    @Test
+   @Test
     fun start(){
         clickFirstButton(wait = wait)
         inputPhoneNumber(wait = wait, phoneNumber = "00012332121")
@@ -29,7 +29,6 @@ class PhoneNumberScreen(private val driver: AndroidDriver, private val wait: Web
 //    }
     //for android
     @Step("Клик по первой кнопке...")
-    @Description("ASLDALDLW")
     private fun clickFirstButton(wait: WebDriverWait) {
         val buttonElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.webbankir:id/btnNext")))
         buttonElement.click()
